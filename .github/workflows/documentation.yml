@@ -11,7 +11,7 @@ jobs:
   docs-module:
     uses: AhiruMarsh/actions/.github/workflows/generate-terraform-docs.yaml@main
     with:
-      working-dir: /
+      working-dir: .
     permissions:
       contents: write
 

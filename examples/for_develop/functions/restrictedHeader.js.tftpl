@@ -1,0 +1,30 @@
+// ====================================================
+// Restricted Header
+// This CloudFront function is used to restrict the header of the request.
+// ====================================================
+var HEADER_NAME = "${HEADER_NAME}"
+var HEADER_VALUE = "${HEADER_VALUE}"
+
+function handler(event) {
+  var request = event.request;
+  var clientHeaders = request.headers;
+
+  var targetHeader = clientHeaders[HEADER_NAME.toLowerCase()];
+
+  var isPermittedHeader = false;
+  if (targetHeader && targetHeader.value) {
+    if (targetHeader.value === HEADER_VALUE) {
+      isPermittedHeader = true;
+    }
+  }
+
+  if (isPermittedHeader) {
+    return request;
+  } else {
+    var response = {
+      statusCode: 401,
+      statusDescription: 'Unauthorized',
+    };
+    return response;
+  }
+}

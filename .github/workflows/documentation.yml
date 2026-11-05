@@ -1,0 +1,30 @@
+name: Generate terraform docs
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/**.yml"
+      - ".github/workflows/**.yaml"
+      - "**.tf*"
+
+jobs:
+  docs-module:
+    uses: AhiruMarsh/actions/.github/workflows/generate-terraform-docs.yaml@main
+    with:
+      working-dir: /
+    permissions:
+      contents: write
+
+  docs-example:
+    uses: AhiruMarsh/actions/.github/workflows/generate-terraform-docs.yaml@main
+    with:
+      working-dir: examples/terraform/
+    permissions:
+      contents: write
+
+  docs-dev:
+    uses: AhiruMarsh/actions/.github/workflows/generate-terraform-docs.yaml@main
+    with:
+      working-dir: examples/for_develop/
+    permissions:
+      contents: write

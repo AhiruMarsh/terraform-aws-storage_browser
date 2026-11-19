@@ -1,7 +1,5 @@
 resource "aws_s3_bucket" "test" {
-  bucket_prefix    = "${var.prefix_name}-test"
-  bucket_namespace = "account-regional"
-
+  bucket_prefix = "${var.prefix_name}-test-"
   force_destroy = true
 }
 
@@ -43,7 +41,11 @@ resource "aws_s3_bucket_public_access_block" "test" {
 }
 
 locals {
-  allow_origin_url = var.frontend_url != null ? var.frontend_url : "https://${module.storagebrowser.cloudfront_distribution_fqdn}"
+  allow_origin_url = coalesce(
+    var.frontend_url,
+    var.custom_domain_name != null ? "https://${var.custom_domain_name}" : null,
+    "https://${module.storagebrowser.cloudfront_distribution_fqdn}"
+  )
 }
 
 resource "aws_s3_bucket_cors_configuration" "test" {

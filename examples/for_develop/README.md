@@ -33,10 +33,12 @@ No requirements.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_custom_domain_name"></a> [custom\_domain\_name](#input\_custom\_domain\_name) | Custom domain name (FQDN) for CloudFront | `string` | `null` | no |
 | <a name="input_frontend_url"></a> [frontend\_url](#input\_frontend\_url) | Frontend URL | `string` | `null` | no |
 | <a name="input_prefix_name"></a> [prefix\_name](#input\_prefix\_name) | Prefix name | `string` | `"storagebrowser"` | no |
 | <a name="input_restricted_header_name"></a> [restricted\_header\_name](#input\_restricted\_header\_name) | Header name required to access CloudFront | `string` | n/a | yes |
 | <a name="input_restricted_header_value"></a> [restricted\_header\_value](#input\_restricted\_header\_value) | Header value required to access CloudFront | `string` | n/a | yes |
+| <a name="input_route53_zone_id"></a> [route53\_zone\_id](#input\_route53\_zone\_id) | Route 53 hosted zone ID of the custom domain | `string` | `null` | no |
 
 ## Outputs
 

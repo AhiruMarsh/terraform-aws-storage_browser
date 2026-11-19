@@ -13,7 +13,7 @@ const { StorageBrowser } = createStorageBrowser({
 
 export default function App() {
   return (
-    <Authenticator loginMechanisms={['email']} /*hideSignUp*/>
+    <Authenticator loginMechanisms={['email']} hideSignUp>
       {({ signOut, user }) => (
         <>
           <div className="header">

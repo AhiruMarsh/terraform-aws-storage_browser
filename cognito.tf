@@ -1,5 +1,9 @@
 locals {
-  url = var.frontend_url != null ? var.frontend_url : "https://${aws_cloudfront_distribution.frontend.domain_name}"
+  url = coalesce(
+    var.frontend_url,
+    local.custom_domain_enabled ? "https://${var.custom_domain_name}" : null,
+    "https://${aws_cloudfront_distribution.frontend.domain_name}"
+  )
 }
 
 # Cognito User Pool（ユーザー管理・認証）
@@ -7,6 +11,10 @@ resource "aws_cognito_user_pool" "authn" {
   name = local.authn_prefix_name
 
   auto_verified_attributes = ["email"]
+
+  admin_create_user_config {
+    allow_admin_create_user_only = true
+  }
 
   email_configuration {
     email_sending_account = "COGNITO_DEFAULT"

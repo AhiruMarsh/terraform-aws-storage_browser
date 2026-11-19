@@ -2,6 +2,10 @@ data "aws_cloudfront_cache_policy" "caching_optimized" {
   name = "Managed-CachingOptimized"
 }
 
+data "aws_cloudfront_cache_policy" "caching_disabled" {
+  name = "Managed-CachingDisabled"
+}
+
 resource "aws_cloudfront_distribution" "frontend" {
   comment = "${var.prefix_name}-frontend"
 
@@ -32,6 +36,28 @@ resource "aws_cloudfront_distribution" "frontend" {
   }
 
   default_cache_behavior {
+    target_origin_id = aws_s3_bucket.frontend.id
+
+    viewer_protocol_policy = "redirect-to-https"
+    allowed_methods        = ["GET", "HEAD", "OPTIONS"]
+    cached_methods         = ["GET", "HEAD"]
+    compress               = true
+
+    cache_policy_id            = data.aws_cloudfront_cache_policy.caching_disabled.id
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.frontend.id
+
+    dynamic "function_association" {
+      for_each = var.cloudfront_function_arn != null ? [var.cloudfront_function_arn] : []
+
+      content {
+        event_type   = "viewer-request"
+        function_arn = function_association.value
+      }
+    }
+  }
+
+  ordered_cache_behavior {
+    path_pattern     = "/assets/*"
     target_origin_id = aws_s3_bucket.frontend.id
 
     viewer_protocol_policy = "redirect-to-https"

@@ -1,5 +1,5 @@
 module "storagebrowser" {
-  source = "git::https://github.com/AhiruMarsh/terraform-aws-storage_browser"
+  source = "git::https://github.com/AhiruMarsh/terraform-aws-storage_browser?ref=main" # 利用時はタグ等で固定する
 
   prefix_name                = var.prefix_name
   target_s3_bucket_name_list = [aws_s3_bucket.test.id]

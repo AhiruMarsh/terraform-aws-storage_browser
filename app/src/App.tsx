@@ -7,9 +7,6 @@ import { Authenticator, Button } from '@aws-amplify/ui-react';
 
 import './App.css';
 
-import { configureAmplify } from './awsConfig';
-configureAmplify();
-
 const { StorageBrowser } = createStorageBrowser({
   config: createAmplifyAuthAdapter(),
 });

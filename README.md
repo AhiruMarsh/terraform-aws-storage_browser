@@ -10,6 +10,15 @@ Terraform module to create AWS Storage Browser for S3
 - アプリの更新 = モジュールの更新です。利用側は `source` の `?ref=` を更新して apply してください
   （`?ref=` を省略すると既定ブランチの最新 `app/dist` が使われます）。
 
+## カスタムドメイン
+`custom_domain_name` を指定すると、CloudFront にカスタムドメインを設定し、ACM 証明書を us-east-1 に発行します（AWS provider v6 のリソース単位 `region` を使うため provider alias は不要です）。
+
+- `route53_zone_id` も指定: DNS 検証レコードと CloudFront へのエイリアス（A/AAAA）まで自動で作成します。
+- `route53_zone_id` 未指定: 出力 `acm_validation_records` の CNAME を自前の DNS に登録してください。
+  証明書の検証が完了するまで apply は待機するため、apply 中に ACM コンソールで表示されるレコードを登録します。
+  CloudFront への CNAME/ALIAS も自前で登録が必要です。
+- Cognito のコールバック URL は `frontend_url` → `custom_domain_name` → CloudFront ドメインの順で決まります。
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 

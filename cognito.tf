@@ -1,5 +1,9 @@
 locals {
-  url = var.frontend_url != null ? var.frontend_url : "https://${aws_cloudfront_distribution.frontend.domain_name}"
+  url = coalesce(
+    var.frontend_url,
+    local.custom_domain_enabled ? "https://${var.custom_domain_name}" : null,
+    "https://${aws_cloudfront_distribution.frontend.domain_name}"
+  )
 }
 
 # Cognito User Pool（ユーザー管理・認証）

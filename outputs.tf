@@ -3,11 +3,11 @@ output "cloudfront_distribution_fqdn" {
 }
 
 output "cognito_user_pool_id" {
-  value = aws_cognito_user_pool.authn.id
+  value = aws_cognito_user_pool.authn
 }
 
 output "cognito_user_pool_client_id" {
-  value = aws_cognito_user_pool_client.authz_frontend.id
+  value = aws_cognito_user_pool_client.authn_frontend.id
 }
 
 output "cognito_identity_pool_id" {

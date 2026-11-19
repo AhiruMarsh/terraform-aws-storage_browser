@@ -1,5 +1,5 @@
-.env*
-!.env.example
+# ローカル開発用の実行時設定（Terraform が本番では S3 に生成する）
+public/config.json
 
 # Logs
 logs
@@ -11,7 +11,6 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
 dist-ssr
 *.local
 

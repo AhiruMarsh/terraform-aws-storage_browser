@@ -1,6 +1,6 @@
 {
   "name": "storagebrowser-app",
-  "version": "1.0.0",
+  "version": "2026.11.0",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -9,19 +9,19 @@
     "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {
-    "@aws-amplify/auth": "^6.0.5",
-    "@aws-amplify/storage": "^6.0.5",
-    "@aws-amplify/ui-react": "^6.13.2",
-    "@aws-amplify/ui-react-storage": "^3.14.0",
-    "aws-amplify": "^6.0.5",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "@aws-amplify/auth": "^6.21.2",
+    "@aws-amplify/storage": "^6.17.0",
+    "@aws-amplify/ui-react": "^6.15.7",
+    "@aws-amplify/ui-react-storage": "^3.18.4",
+    "aws-amplify": "^6.22.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.1",
-    "typescript": "^5.3.3",
-    "vite": "^7.2.4"
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8"
   }
 }

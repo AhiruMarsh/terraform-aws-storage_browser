@@ -1,7 +1,5 @@
 resource "aws_s3_bucket" "test" {
-  bucket_prefix    = "${var.prefix_name}-test"
-  bucket_namespace = "account-regional"
-
+  bucket_prefix = "${var.prefix_name}-test-"
   force_destroy = true
 }
 

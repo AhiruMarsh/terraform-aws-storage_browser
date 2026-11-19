@@ -1,7 +1,12 @@
-resource "aws_s3_bucket" "frontend" {
-  bucket           = "${var.prefix_name}-frontend"
-  bucket_namespace = "account-regional"
+data "aws_caller_identity" "current" {}
 
+locals {
+  aws_account_id  = data.aws_caller_identity.current.account_id
+  aws_region_name = data.aws_region.current.region
+}
+
+resource "aws_s3_bucket" "frontend" {
+  bucket        = "${var.prefix_name}-frontend-${local.aws_account_id}-${local.aws_region_name}"
   force_destroy = true
 }
 

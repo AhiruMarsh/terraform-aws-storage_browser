@@ -1,0 +1,11 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    uses: AhiruMarsh/actions/.github/workflows/release.yaml@main
+    permissions:
+      contents: write

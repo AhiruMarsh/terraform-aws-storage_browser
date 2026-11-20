@@ -6,7 +6,7 @@ updates:
       interval: weekly
 
   - package-ecosystem: terraform
-    directories: /
+    directory: /
     schedule:
       interval: weekly
     ignore:

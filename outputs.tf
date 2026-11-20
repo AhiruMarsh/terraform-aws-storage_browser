@@ -29,3 +29,8 @@ output "acm_validation_records" {
     }
   ] : []
 }
+
+output "log_bucket_name" {
+  description = "Name of the S3 bucket that stores CloudFront access logs"
+  value       = aws_s3_bucket.logs.id
+}
